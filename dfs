@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+#define MAX_NODES 10
+
+int n, a[MAX_NODES][MAX_NODES], v[MAX_NODES] = {0};
+
+void dfs(int x) {
+    printf("%d\t", x);
+    v[x] = 1;
+
+    for (int k = 0; k < n; k++) {
+        if (a[x][k] == 1 && v[k] == 0) {
+            dfs(k);
+        }
+    }
+}
+
+int main(void) {
+    printf("Enter the number of Nodes: ");
+    scanf("%d", &n);
+
+    printf("Enter the Adjacency Matrix:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &a[i][j]);
+        }
+    }
+
+    printf("\nDFS: ");
+    for (int i = 0; i < n; i++) {
+        if (v[i] == 0) {
+            dfs(i);
+        }
+    }
+    printf("\n");
+
+    return 0;
+}
